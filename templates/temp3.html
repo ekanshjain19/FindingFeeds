@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<!--Angular Js-->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<title>Finding Feeds</title>
+<style type="text/css">
+	li : hover{
+		background-color: #0E6251;
+	}
+	li:hover a{
+		color: white;
+		
+	}
+	li a:hover{
+		background-color: #0E6251;
+		color:white; 
+	}
+	a:link{
+		color:#0E6251;
+	}
+	a:hover{
+		color:white; 
+     	text-decoration:none; 
+     	cursor:pointer;
+	}
+</style>
+
+
+	</head>
+	
+	<body style="min-height: 100%">
+		<div class="container-fluid" style="margin-top: 3%;"  ng-app="myApp" ng-controller="myCtrl">
+			<div class="row">
+				<div class="col-md-2" style="background-color: white">
+					<div style="color:#0E6251" align="center">
+						<ul><h2>Channels</h2></ul>
+						<hr>
+						<br>
+						<input type="text" class="form-control" placeholder="Search URL" data-ng-model="ChannelList" name="ChannelList" ng-required="true">
+						<br>	
+						<li ng-repeat="x in names | filter : ChannelList" class="list-unstyled"><a href="#"  style="text-decoration: none">{{x}}</a></li>
+						<hr>
+					</div>
+					<div style="position: abs"><span class="glyphicon glyphicon glyphicon-zoom-in" aria-hidden="true"></span></div>
+				</div>
+				<div class="col-md-8" style="">
+
+					<div class="container" align="center" style="">
+						<h1><span style="color:#1F618D">Finding Feeds</span></h1>
+						<hr>
+					</div>
+					<div class="row justify-content-md-center">
+						<div class="col-md-9">
+							<form name="myForm" method="POST">
+							<div class="input-group  input-group-lg">
+							  <input type="text" class="form-control" placeholder="Search URL" data-ng-model="myurl" name="SearchUrl" ng-required="true">
+							</div>
+							</form>
+						</div>
+						<div class="col-md-3" align="left"><button type="button" class="btn btn-outline-primary" ng-click="SubmitAction()">Search</button></div>
+					</div>
+					<div>
+						<div ng-show="!myForm.SearchUrl.$valid" class="alert alert-secondary" role="alert">
+						  This is a warning alert—check it out!
+						</div>
+						<p data-ng-bind="myurl"></p>
+						<p data-ng-bind="MyResponse"></p>
+					</div>
+				</div>
+
+
+			</div>
+
+			
+		</div>
+		
+		<footer style=""  align="center">
+			<div class="container-fluid" style="margin-top: 3%">
+				<img src="../static/startupflux.png" class="img-fluid" alt="StartUp Flux Icon"/>
+			</div>
+			<div class="container-fluid" align="center">
+				<hr>
+				<p><i>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout</i></p>
+			</div>
+		</footer>
+	</body>
+
+
+	<script type="text/javascript">
+		var app=angular.module("myApp",[]);
+		app.controller('myCtrl',function($scope,$http){
+			$scope.myurl="Search Url"
+		// 	$scope.SubmitAction=function(){
+		// 		let data=$scope.myurl
+		// 		$http.post('/',data).then(function success(data, status, headers, config){
+		// 			$scope.message="Data Successfully Submitted"	
+		// 		})
+		// 		.errror(function(data, status, headers, config){
+		// 			alert( "failure message: " + JSON.stringify({data: data}));
+		// 		});
+		// 	}
+		// });
+		$scope.SubmitAction=function(){
+		$http({
+	        method : "POST",
+	        url : "http://127.0.0.1:5000/welcome",
+	        data : $scope.myurl
+	    }).then(function mySuccess(response) {
+	    	console.log(response.data)
+	    	$scope.MyResponse=response.data
+	        //$scope.myWelcome = response.data;
+	    }, function myError(response) {
+	        console.log("error")
+	        console.log(response.data)
+	        $scope.myWelcome = response.statusText;
+	    	});
+		};
+		$scope.names = [
+	        'Jani',
+	        'Carl',
+	        'Margareth',
+	        'Hege',
+	        'Joe',
+	        'Gustav',
+	        'Birgit',
+	        'Mary',
+	        'Kai'
+    	];
+		});
+	</script>
+</html>

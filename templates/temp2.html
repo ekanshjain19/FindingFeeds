@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!--Bootstrap -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+		<!--Angular Js-->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<link  rel="shortcut icon" type="image/png" href="../static/startupflux.png">
+		<link href="https://fonts.googleapis.com/css?family=Gugi" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Cute+Font" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../static/Styling_homePage.css">
+		<title>Finding Feeds</title>
+	</head>
+
+	<body class="container-fluid" data-ng-app="myApp" data-ng-controller="myCtrl">
+		<div class="row" style="height: 100%">
+			<!--Left Panel-->
+			<div class="col-md-3 left-navbar" align="center">
+				<img src="../static/news_feed.gif" class="img-fluid"  max-width="100%" alt="StartUp Flux Icon"/>
+				<h2> Your Channel List</h2>
+				<hr>
+				<div class="container">
+					<!--Channel Search Box-->
+					<div class="input-group input-group-lg" style="width:90%">
+					  <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="Channel Name" data-ng-model="ChannelList">
+					</div>
+					<br>
+					<!--Channel Lists--><!-- add "active" to class to highlight it-->
+					<div class="list-group">
+						<a href="#" class="list-group-item list-group-item-action" data-ng-repeat="channels in names | filter : ChannelList">
+							<span data-ng-bind="channels"></span>
+						</a>
+					</div>
+				</div>
+				<!--Add More Channel-->
+				<div class="left-Foot container" align="left">
+					<hr>
+					<img src="../static/AddChannel.jpeg" class=".img-fluid addChannelImg" width="10%">
+				</div>
+			</div>
+
+			<!--Right Panel-->
+			<div class="col-md-9 right-panel" align="center">
+				<!--heading and Search Box-->
+				<div class="container"  style="padding-top: 5%;">
+					<span style="display: inline-block;width: 70%">
+						<h1 style="color:#154360;font-family: 'Cute Font', cursive;font-size: 8em"><b>Finding Feeds</b></h1><hr>
+					</span>
+					<span> &nbsp;&nbsp;<img src="../static/Channel-ListLogo_02.jpeg" width="12%"></span>
+					<br><br><br><br>
+					<div class="input-group input-group-lg">
+					  <input type="text" class="form-control" placeholder="Search Url">
+					  <div class="input-group-append">
+					    <button type="button" class="btn btn-outline-info">Search</button>
+					  </div>
+					</div>
+				</div>
+				<!--Search Results-->
+				<div class="container">
+					<br><br><hr><br>
+					<h2>Your Search Results..!!</h2>
+					<br>
+		<!-- 			<div class="row">
+					  <div class="col-sm-4" style="padding: 2% 6%">
+						<div class="card">
+						  <img class="card-img-top" src="../static/Channel-ListLogo.jpg" max-width="100%" alt="Card image cap">
+						  <div class="card-body">
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						  </div>
+						</div>
+					  </div>
+					  <div class="col-sm-4" style="padding: 2% 6%">
+						<div class="card" style="width: 300;">
+						  <img class="card-img-top" src="../static/Channel-ListLogo.jpg" alt="Card image cap">
+						  <div class="card-body">
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						  </div>
+						</div>
+					  </div>
+					  <div class="col-sm-4" style="padding: 2% 6%">
+						<div class="card" style="width: 300;">
+						  <img class="card-img-top" src="../static/Channel-ListLogo.jpg" alt="Card image cap">
+						  <div class="card-body">
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						  </div>
+						</div>
+					  </div>
+					</div> -->
+					<div class="card" style="border-top: 0px">
+					  	<div class="card-body">
+					    	<span style="display: inline-block;">
+					    		<img src="../static/Channel-ListLogo.jpg" width="20%"><a href="" ng-click="PopUp()"><h5 class="card-title">Card title</h5></a></span>
+					    	<span class="">Some quick example text to build on the card title and make up the bulk of the card's content.</span>
+						</div>
+					</div>
+					<br>
+					<div class="card" style="border-top: 0px">
+					  	<div class="card-body">
+					    	<span style="display: inline-block;">
+					    		<img src="../static/Channel-ListLogo.jpg" width="20%"><a href="" ng-click="PopUp()"><h5 class="card-title">Card title</h5></a></span>
+					    	<span class="">Some quick example text to build on the card title and make up the bulk of the card's content.</span>
+						</div>
+					</div>
+					<br>
+					<div class="card" style="border-top: 0px">
+					  	<div class="card-body">
+					    	<span style="display: inline-block;">
+					    		<img src="../static/Channel-ListLogo.jpg" width="20%"><a href="" ng-click="PopUp()"><h5 class="card-title">Card title</h5></a></span>
+					    	<span class="">Some quick example text to build on the card title and make up the bulk of the card's content.</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="container myCard" id="myCard">
+			<div class="card" align="center"><img src="../static/closeButton.jpeg" width="50em"  align="left" class="closeButton" ng-click="closeDiv()"/ style="z-index: 200">
+			  <h1 class="card-title"><img class="card-img-top" src="../static/Channel-ListLogo.jpg" alt="Card image cap">
+			  	Card title</h1>
+			  <div class="card-body" style="width: 100%">
+			  	<div class="row">
+			  		<div class="col-md-4">
+					  	<div class="card" style="width:100%;padding:1em">
+						  <img class="card-img-top" src="../static/Channel-ListLogo.jpg" alt="Card image cap">
+						  <div class="card-body">
+						    <h5 class="card-title">Card title</h5>
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						    <a href="index.html" target="+_blank" class="btn btn-primary">Go somewhere</a>
+						  </div>
+						</div>
+			  		</div>
+			  		<div class="col-md-4">
+					  	<div class="card" style="padding:1em">
+						  <img class="card-img-top" src="../static/Channel-ListLogo.jpg" alt="Card image cap">
+						  <div class="card-body">
+						    <h5 class="card-title">Card title</h5>
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						    <a href="index.html" target="+_blank" class="btn btn-primary">Go somewhere</a>
+						  </div>
+						</div>
+			  		</div>
+			  		<div class="col-md-4">
+					  	<div class="card" style="padding:1em">
+						  <img class="card-img-top" src="../static/Channel-ListLogo.jpg" alt="Card image cap">
+						  <div class="card-body">
+						    <h5 class="card-title">Card title</h5>
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						    <a href="index.html" target="+_blank" class="btn btn-primary">Go somewhere</a>
+						  </div>
+						</div>
+			  		</div>
+			  	</div>
+			  	<br>
+			  	<div class="row">
+			  		<div class="col-md-4">
+					  	<div class="card" style="padding-top:1em;">
+						  <img class="card-img-top" src="../static/Channel-ListLogo.jpg" alt="Card image cap">
+						  <div class="card-body">
+						    <h5 class="card-title">Card title</h5>
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						    <a href="index.html" target="+_blank" class="btn btn-primary">Go somewhere</a>
+						  </div>
+						</div>
+			  		</div>
+			  		<div class="col-md-4">
+					  	<div class="card" style="padding-top:1em;">
+						  <img class="card-img-top" src="../static/Channel-ListLogo.jpg" alt="Card image cap">
+						  <div class="card-body">
+						    <h5 class="card-title">Card title</h5>
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						    <a href="index.html" target="+_blank" class="btn btn-primary">Go somewhere</a>
+						  </div>
+						</div>
+			  		</div>
+			  		<div class="col-md-4">
+					  	<div class="card" style="padding-top:1em;">
+						  <img class="card-img-top" src="../static/Channel-ListLogo.jpg" alt="Card image cap">
+						  <div class="card-body">
+						    <h5 class="card-title">Card title</h5>
+						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						    <a href="index.html" target="+_blank" class="btn btn-primary">Go somewhere</a>
+						  </div>
+						</div>
+			  		</div>
+			  	</div>
+
+			  </div>
+			</div>
+		</div>
+
+
+		<footer class="container" align="center" style="margin-top: 5%">
+			<hr>
+			<span><i>It is a long established fact that a reader will be distracted</i></span><img src="../static/startupflux.png" class="img-fluid"  max-width="30%" alt="StartUp Flux Icon"/><span><i> by the readable content of a page when looking at its layout</i></span>
+		</footer>
+		<script type="text/javascript" src="../static/homePage.js"></script>
+	</body>
+</html>
